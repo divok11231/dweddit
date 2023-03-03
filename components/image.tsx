@@ -8,13 +8,13 @@ interface TransformImageProps {
   height: number;
 }
 
-const TransformImage: React.FC<TransformImageProps> = ({ crop, image, width, height }) => {
+const TransformImage: React.FC<TransformImageProps> = ({  image }) => {
   
   return (
     <CloudinaryContext cloudName="dic7lotfy">
       <Image publicId={image}>
         
-        <Transformation width={width} height={height} crop={crop} />
+        <Transformation  />
       </Image>
     </CloudinaryContext>
   );

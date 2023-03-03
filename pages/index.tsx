@@ -1,39 +1,39 @@
-import Link from 'next/link';
+import Link from 'next/link'
 
-
-export default function Posts(viewPosts) {
-    console.log(viewPosts)
-    return (
-      <div>
-        <h1>Heres your post Bitch,</h1>
-        <p>All of the POSTS ever:</p>
-        <h1 className="title">
-  <Link href="/feed">Next page!</Link>
-</h1>
-
+export default function Home() {
+  return (
+    <div>
+      <h1> Vaporeon posting Central </h1>
+      <nav>
         <ul>
-            
-  {viewPosts.viewPosts.map((Posts,index)=> {
-    return (
-      
-      <li key={Posts.id}>{ Posts.content }</li>
-    )
-  })}
-</ul>
-      </div>
-    )
-  }
-
-  export async function getStaticProps() {
-    const myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('authorization', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiIxMGNnIiwiaWF0IjoxNjc1OTU3NDg0LCJleHAiOjE2NzU5NjQ2ODR9.PcA7wWsxqte1QJC4Xx_tKeTMFxb-PizfB9rhEsfVqkA");
-
-
-    const viewPosts = await fetch('http://localhost:3000/api/view/viewPosts1',{method: 'GET',headers: myHeaders}).then(res => res.json());
-    return {
-      props: {
-        viewPosts
-      }
-    }
-  }
+          <li>
+            <Link href="/signin">
+              Continue to do the lords work
+            </Link>
+          </li>
+          <li>
+            <Link href="/register">
+              Start serving Vaporeon
+            </Link>
+          </li>
+          <li>
+            <Link href="/follow">
+              Connect with other vaporeon enthusiasts
+            </Link>
+          </li>
+          <li>
+            <Link href="/post">
+              Share your love of Vaporeon with the world
+            </Link>
+          </li> 
+          <li>
+            <Link href="/feed">
+              View How other vapoposters are doing
+            </Link>
+          </li>
+        </ul>
+      </nav>
+      <img src="https://res.cloudinary.com/dic7lotfy/image/upload/v1677872889/vapopeepohappy_s1vxyr.jpg" alt="" />
+    </div>
+  )
+}
