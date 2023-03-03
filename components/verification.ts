@@ -1,16 +1,14 @@
 import { verify } from "jsonwebtoken";
 
 export function verifyToken(req, res) {
-  const {
-    headers: { authorization },
-  } = req;
   interface JwtPayload {
     [x: string]: any;
     id: number;
   }
 
-  const token = req.headers.authorization?.replace("Bearer ", "");
-  console.log(token);
+  const jwt = req.cookies.oursitejwt;
+
+  const token = jwt;
 
   try {
     const decoded = verify(token, process.env.ACCESS_TOKEN_KEY) as JwtPayload;

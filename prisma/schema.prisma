@@ -24,7 +24,7 @@ model Follows {
   follower    User? @relation("following", fields: [followerId], references: [id])
   followerId  Int?
   following   User? @relation("follower", fields: [followingId], references: [id])
-  followingId Int
+  followingId Int?
 }
 
 model Post {

@@ -3,23 +3,26 @@ import { PrismaClient, Post } from "@prisma/client";
 const prisma = new PrismaClient({ log: ["query"] });
 import { verifyToken } from "components/verification";
 const jwt = require("jsonwebtoken");
+import cookies from "cookie";
 
 interface Error {
   message: string;
 }
 
-export default async function handler(req, res) {
+export default async function handler(req: NextApiRequest, res) {
   try {
-    const decoded = verifyToken(req, res);
+    const jwt = req;
+
+    const decoded = verifyToken(jwt, res);
+
     if (!decoded) {
       return;
     }
 
-    const { content } = req.body;
-
     const post = await prisma.post.create({
       data: {
-        content: content,
+        postPic: req.body.image.imagePublicId,
+        content: req.body.content.post,
         author: {
           connect: {
             id: decoded.id,
